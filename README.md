@@ -11,3 +11,6 @@
 + Maven 
 + Java 8 
 + MySQL 
++ Start Config server 
+    + `http://localhost:8888/config-server/financialService`
+    + `http://localhost:8888/config-server/userService`
