@@ -9,4 +9,6 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, Integer>
 
     UserDetail findBySecurityId(String securityId);
 
+    @Override
+    long count();
 }

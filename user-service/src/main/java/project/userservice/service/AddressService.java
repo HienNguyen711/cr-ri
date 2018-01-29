@@ -9,7 +9,7 @@ import project.userservice.repo.AddressRepository;
 @Service
 @Transactional
 public class AddressService {
-    
+
     @Autowired
     AddressRepository addressRepository;
 }

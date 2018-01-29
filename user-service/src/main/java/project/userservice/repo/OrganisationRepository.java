@@ -6,4 +6,6 @@ import project.userservice.entity.Organisation;
 
 public interface OrganisationRepository extends JpaRepository<Organisation, Integer> {
     Organisation findByUserId(String userId);
+
+
 }
