@@ -11,12 +11,13 @@ import javax.validation.Valid;
 @SpringBootApplication
 public class UserserviceApplication {
 
-
-
-
+	@Value("${spring.profiles}")
+	private static String profiles;
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserserviceApplication.class, args);
+
+		System.out.print(profiles);
 	}
 }
