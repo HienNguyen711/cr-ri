@@ -1,6 +1,7 @@
 # Project overview 
 
-
++ Bank credit account management
++ 2 service: User & Account 
 
 ### Tech stack 
 + Service discovery : Eureka 
@@ -22,13 +23,71 @@
     + Install Jenkins 
     + `http://localhost:8080`
     + Install Jenkins plugin : Git and Github plugin 
+    + Create Maven job for build 
++ Docker 
+    + Build Docker image : 
+    + Push Docker to Docker hub 
+        + Use spotify plugin to run Docker file to create image 
+        <pluginManagement> 
+            <plugins> 
+                <plugin> 
+                    <groupId>com.spotify</groupId> 
+                    <artifactId>docker-maven-plugin</artifactId> 
+                    <version>0.4.11</version> 
+                    <executions> 
+                        <execution> 
+                            <phase>package</phase> 
+                            <goals> 
+                                <goal>build</goal> 
+                            </goals> 
+                        </execution> 
+                    </executions> 
+                    <configuration> 
+                        <dockerDirectory>${project.build.directory}/classes</dockerDirectory> 
+                        <!--push to docker hub -->
+                        <imageName>cr-ri/${project.artifactId}</imageName> 
+                        <resources> 
+                            <resource> 
+                                <targetPath>/</targetPath> 
+                                <directory>${project.basedir}</directory> 
+                                <excludes> 
+                                    <exclude>target/**/*</exclude> 
+                                    <exclude>pom.xml</exclude> 
+                                    <exclude>*.iml</exclude> 
+                                </excludes> 
+                            </resource> 
+                            <rescource> 
+                                <targetPath>/</targetPath> 
+                                <directory>${project.build.directory}</directory> 
+                                <include>webgate.war</include> 
+                            </rescource> 
+                        </resources> 
+                    </configuration> 
+                </plugin> 
+            </plugins> 
+        </pluginManagement> 
+
+        + Command to build the Docker image : 
+            + `mvn package docker:build `
+            + Push to Docker registry : `mvn package docker:build -DpushImage`
 
 
++ CI tool: 
+    + Set up Jenkins master-slave 
+    + Create job on Jenkins which have a build trigger as github commit
+    + Job shell script: 
+        `
+        #!/bin/bash
+        # build docker image
+        docker build --pull=true -t <git-repo>:$git_commit
+        # test docker image 
+        docker run -i --rm <git-repo>:$git_commit ./script/tests
+        # push docker image
+        docker push <git-repo>:$git_commit
+        `
 
 
-
-
-
++ Monitoring microservice project : AWS Cloudwatch, 
 
 
 

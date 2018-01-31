@@ -32,16 +32,15 @@ public class FinancialController {
     ObjectMapper mapper;
     /**
      * Method is responsible for adding new AccountDetails.
-     *
-     * @param address
+
      * @param userId
      * @return
      */
-    public static final String addAccountDetails = "addAccountDetails(): ";
+
 
     @RequestMapping(method = RequestMethod.POST, value = "{userId}/account", produces = "application/json", consumes = "application/json")
     public ResponseEntity<String> addAccountDetails(@RequestBody BankAccountDetail accountDetail, @PathVariable("userId") UUID userId) {
-        logger.debug(addAccountDetails + " Account for user Id " + userId + " is creating.");
+        logger.debug( " Account for user Id " + userId + " is creating.");
         accountDetail.setUserId(userId.toString());
         financialService.saveAccountDetail(accountDetail);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -50,16 +49,15 @@ public class FinancialController {
     /**
      * Method is responsible for creating a obligation Details.
      *
-     * @param userDetail
      * @param userId
      * @return
      */
 
-    public static final String addObligationDetails = "addObligationDetails(): ";
+
 
     @RequestMapping(method = RequestMethod.POST, value = "{userId}/obligation", produces = "application/json", consumes = "application/json")
     public ResponseEntity<String> addObligationDetails(@RequestBody ObligationDetails obligationDetails, @PathVariable("userId") UUID userId) {
-        logger.debug(addObligationDetails + " Creating user's obligation with Id " + userId + " and details : " + obligationDetails);
+        logger.debug( " Creating user's obligation with Id " + userId + " and details : " + obligationDetails);
         obligationDetails.setUserId(userId.toString());
         financialService.saveObligation(obligationDetails);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -67,16 +65,15 @@ public class FinancialController {
 
     /**
      *  Deleting Financial Detail of user
-     * @param userDetail
      * @param userId
      * @return
      */
 
-    public static final String deleteFinancialDetails = "deleteFinancialDetails(): ";
+
 
     @RequestMapping(method = RequestMethod.DELETE, value = "{userId}", produces = "application/json", consumes = "application/json")
     public ResponseEntity<String> deleteFinancialDetails( @PathVariable("userId") UUID userId) {
-        logger.debug(deleteFinancialDetails + " deleting user with Id " + userId);
+        logger.debug( " deleting user with Id " + userId);
         financialService.deleteFinancialDetail(userId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -87,11 +84,11 @@ public class FinancialController {
      * @param userId
      * @return
      */
-    public static final String getAccountDetails = "getAccountDetails(): ";
+
 
     @RequestMapping(method = RequestMethod.GET, value = "{userId}", produces = "application/json", consumes = "application/json")
     public ResponseEntity<BankAccountDetail> getAccountDetails(@PathVariable("userId") UUID userId) {
-        logger.debug(getAccountDetails + " getting information for userId " + userId);
+        logger.debug( " getting information for userId " + userId);
         BankAccountDetail objectToReturn = financialService.getAccountDetail(userId);
         if (objectToReturn == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -104,11 +101,11 @@ public class FinancialController {
      * @param userId
      * @return
      */
-    public static final String getObligationDetails = "getObligationDetails(): ";
+
 
     @RequestMapping(method = RequestMethod.GET, value = "{userId}/address", produces = "application/json", consumes = "application/json")
     public ResponseEntity<ObligationDetails> getObligationDetails(@PathVariable("userId") UUID userId) {
-        logger.debug(getObligationDetails + " getting Obligation Details for user Id: " + userId);
+        logger.debug(" getting Obligation Details for user Id: " + userId);
         ObligationDetails objectToReturn = financialService.getObligationDetail(userId);
         if (objectToReturn == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
