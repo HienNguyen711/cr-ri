@@ -7,6 +7,25 @@
     + Client-side discovery pattern: Network location + load balancing algorithm : Eureka - Ribbon: load balancing 
     + Server-side discovery : middleware entity - Load balancer - gateway - API gateway pattern 
 
++ Circuit breaker 
+    + Close state 
+    + Open state 
+    + Half open state 
+
+
++ RabbitMQ : message broker solutions AMQP 
+    + Start RabbitMQ server: `rabbitmq-server start`
+    + Admin console, install RabbitMQ plugin: `sudo rabbitmq-plugins enable rabbitmq_management `
+    + `http://localhost:15672/#/` 
+
+
+
+
+
+
+
+
+
 ### Run the project 
 + Maven 
 + Java 8 
@@ -46,3 +65,11 @@
   "gender": "1", 
   "dateOfBirth": "2010-10-27T11:58:22.973Z", 
 } 
+
+
+
+
+
+
+### Screen shot demos 
+<img src="./img/1.png">
